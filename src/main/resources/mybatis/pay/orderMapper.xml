@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="kr.co.jhta.dao.PayDAO">
+  	<insert id="payAddOne" parameterType="PayDTO">
+<!-- 	INSERT INTO orders(nickname, p_no, price, pay_method, pay_date, pay_status, customer)
+		VALUES (#{nickname}, #{p_no},#{price}-3000, #{pay_method}, date_format(now(), '%Y-%m-%d'), 1, #{customer})
+-->
+		INSERT INTO orders(pay_no,nickname, p_no, price, pay_method, pay_date, pay_status, customer)
+		VALUES (null,#{nickname}, #{p_no},#{price}-3000, #{pay_method}, date_format(now(), '%Y-%m-%d'), 1, #{customer})		
+	</insert>
+	<select id="getPayAll" resultType="PayDTO">
+		SELECT * 
+		FROM orders as o
+			INNER JOIN product as p
+			ON o.p_no = p.p_no
+			WHERE o.customer = #{customer}
+			ORDER BY pay_no desc
+	</select>
+	<delete id="deletePay" parameterType="int">
+		DELETE FROM orders
+  		WHERE pay_no = #{pay_no}
+	</delete>
+  </mapper>

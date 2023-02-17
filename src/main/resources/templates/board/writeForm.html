@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>NewMeet</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+.info_only {
+    margin-left: 0px;
+    margin-right: 6px;
+    border: solid 1px;
+    border-color: #5BC0F8;
+    border-radius: 3px;
+    padding: 1px 6px 3px;
+    font-size: 15px;
+    
+}
+
+</style>
+<!-- header -->
+</head>
+	<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
+
+<link th:href="@{/css/write.css}" rel="stylesheet" />
+
+<script type="text/javascript">
+	//단일이미지 미리보기
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				document.getElementById('preview').src = e.target.result;
+			};
+			reader.readAsDataURL(input.files[0]);
+		} else {
+			document.getElementById('preview').src = "";
+		}
+	}
+	
+	//평점 기능
+	$(function() {
+		$('input[name=rating]').click(function() {
+			var rating = $(this).val();
+			console.log(rating);
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="container">
+		
+
+		<form action="/board/write" method="post">
+			 <input type="hidden" th:value="${usersDTO.nickname}" name="writer" id="writer"></input> 
+			<div th:each="dto2:${list}"> 
+			<input type="hidden" th:value="${dto2.nickname}" name="nickname" id="nickname"></input>  
+			
+			<!-- <span th:text="${dto2.nickname}"></span>
+			<span th:text="${usersDTO.nickname}"></span> -->
+			
+			<div class="mb-3"> 
+				<input type="hidden" th:value="${dto2.p_no}" name="p_no" id="p_no"></input>
+			</div> 
+			</div>
+			<div class="mb-3">
+				<label for="contents" class="info_only">★newmeet 참여는 어떠셨나요?</label><br><br>
+				<textarea name="contents" id="contents" cols="65" rows="7"></textarea>
+			</div>
+
+			<label for="rating" class="info_only">★평점을 남겨주세요</label>
+			<div class="mb-3" name="rating" id="rating">
+				<fieldset>
+					<input type="radio" name="rating" value="5" id="rate1"><label
+						for="rate1">★</label> <input type="radio" name="rating"
+						value="4" id="rate2"><label for="rate2">★</label> <input
+						type="radio" name="rating" value="3" id="rate3"><label
+						for="rate3">★</label> <input type="radio" name="rating"
+						value="2" id="rate4"><label for="rate4">★</label> <input
+						type="radio" name="rating" value="1" id="rate5" checked><label
+						for="rate5">★</label>
+				</fieldset>
+				  </div>
+			  <!--  <div class="mb-3">
+				<label for="review_img" class="col-form-label">사진</label> <input
+					style="display: block;" type="file" name="review_img"
+					id="review_img" onchange="readURL(this);"> <img
+					id="preview" style="width: 150px;" />
+			</div> -->
+				<div class="mb-3">
+					<a href="review" class="btn btn-outline-primary">목록</a>
+					<button type="submit" class="btn btn-info">작성완료</button>
+				</div>
+		</form>
+	</div>
+	
+<!-- footer -->
+	 <th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
+       <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <title>NewMeet</title>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<script type="text/javascript">
+function refund() {
+	if(confirm("구매한 상품을 환불하시겠습니까?")) {
+		console.log("완료");
+		alert("환불 완료");
+	}else{
+		alert("환불 취소");
+		console.log("취소")
+		return "/mypage";
+	}
+	
+}
+
+function delwrite() {
+	if(confirm("작성한 후기를 삭제하시겠습니까?")) {
+		alert("삭제 완료");
+	}else{
+		alert("삭제 취소");
+	}
+}
+</script>
+</head>
+	<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
+
+<body>
+    <main>
+		<br />
+		<!-- 상단로그인정보 -->
+		
+		<div class="col-lg-4">
+			<svg class="bd-placeholder-img rounded-circle" width="80" height="80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
+				preserveAspectRatio="xMidYMid slice" focusable="false" style="float: left;">
+				<rect width="150%" height="150%" fill="#777"></rect>
+				<image href="image/rabbit.jpeg" height="80" width="80"/>
+			</svg>
+			<h2 class="fw-normal" style="font-size: 30px; padding-left: 110px">
+				<div th:text="${usersDTO.nickname}"></div>
+			</h2>
+			<p>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-secondary" href="/editProfile" style="font-size: 10px; " data-bs-toggle="modal" data-bs-target="#staticBackdrop">프로필수정 »</a>
+
+				<!-- Modal -->
+				<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h1 class="modal-title fs-5" id="staticBackdropLabel">프로필수정</h1>
+				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				      </div>
+				      <div class="modal-body">
+				        <div class="container">
+									<form action="/mypageOk" method="post">
+
+									
+										
+										<div class="form_group">
+											<label for="title">1.유저명</label> <input type="text"
+												class="form-control" name="nickname">
+										</div>
+										
+										<div class="form_group">
+											<label for="title">2.이메일</label> <input type="text"
+												class="form-control" name="email">
+										</div>
+										
+										<div class="form_group">
+											<label for="title">3.연락처 (선택)</label> <input type="text"
+												class="form-control" name="phone">
+										</div>
+										
+										<div class="form_group">
+											<label for="title">4.자기소개 (선택)</label> 
+										<textarea data-v-ce0d5466=""
+											placeholder="간단한 자기소개를 입력해 주세요." name="field" wrap="soft"
+											class="form-control form-control" maxlength="500"
+											id="__BVID__916"
+											style="resize: none; overflow-y: scroll; height: 89px;">
+										</textarea><br />
+										<div><div style="font-weight: bold;">소개 예시보기</div> <br />뉴밋 크루(회원)에게 회원님을 소개해 주세요. 회원님만의 개성을 담거나, 신뢰감을 줄
+											수 있는 사항들을 입력하시면 뉴밋활동에 도움이 됩니다. <br /><br /> <div style="color: red;">* 성격,MBTI,취미,이상형 등 *<br /> 개인
+											연락처(전화번호, 카카오톡 ID, 개인 SNS, 홈페이지 등은 입력할 수 없습니다.</div></div>
+										</div><br />
+										
+										<label for="title">5.프로필사진</label><br />
+										<div class="input-group mb-3">
+											<input type="file" class="form-control" id="profileimage"
+												name="profileimage" multiple="multiple"> <label class="input-group-text"
+												for="inputGroupFile02">Upload</label>
+										</div>
+										<input type="hidden" th:value="${usersDTO.id}" name="id">
+										
+										
+										<!-- <br />	<br />	
+										<div class="d-grid gap-2">
+											<button class="btn btn-primary" type="submit">프로필수정</button>
+										</div> -->
+								</div>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+				        <button type="submit" class="btn btn-primary">정보변경</button>
+									</form>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+			</p>
+		</div>
+		<br />
+		
+		<div class="container-fluid">
+				
+				<div
+					class="d-sm-flex align-items-center justify-content-between mb-4">
+
+				</div>
+
+				<div class="card shadow mb-4">
+                     <div class="card-body">
+                     	
+
+								<div class="container">
+					<h1 class="h3 mb-0 text-gray-800" style="color: gray; font-size: 20px">내 관심뉴밋</h1>
+					<br />
+					
+					
+									<!-- 카드안쪽 -->
+						<div class="product_container product_cont2">
+							<div class="product_items">
+
+								<div class="product_item" th:each="dto : ${list }">
+									<a>
+										<div class="product_item_img">
+											<a th:href="@{/product/productDetail(p_no=${dto.p_no})}">
+											<img th:src="@{/image/mainimage/} + ${dto.image}"></a> 
+										</div>
+									</a> <span class="product_item_name" th:text="${dto.title}"></span>
+									<div class="product_item_price" th:text="${#numbers.formatInteger(dto.price, 3, 'COMMA')}+원">
+									</div>
+									<p>
+										&#128151; <span class="product_item_like"
+											th:text="${dto.like}"></span>
+									</p>
+									<span>
+										<div class="product_item_info">
+											<span class="info_only">ONLY</span> <span class="info_hot">HOT</span>
+										</div>
+									</span>
+								</div>
+
+							</div>
+						</div>
+						<!-- <section class="product_container" id="productList">
+									<section class="product_best"></section>
+								</section> -->
+								<!-- <script>
+								
+							const bestProducts = [  /* const name1 = value1 [, name2 = value2 [, name3 = value3 ]] */
+								{
+								image: '../image/test.jpg',
+							    title: '뉴밋',
+							    price: 1000,
+							    only: true,
+							    hot: false,
+							  },
+							  {
+								    image: '../image/party.JPG',
+								    title: '뉴밋',
+								    price: 11000,
+								    only: false,
+								    hot: true,
+								  },
+								  {
+									    image: '../image/test.jpg',
+									    title: '뉴밋',
+									    price: 7778,
+									    only: true,
+									    hot: true,
+									  },
+									  {
+										    image: '../image/party.JPG',
+										    title: '뉴밋',
+										    price: 7778,
+										    only: false,
+										    hot: true,
+										  },
+							  
+							];
+							
+							 
+								
+							const pListSection = document.getElementById('productList'); /* pListSection = productList태그에 접근. productList와 일치하는 element객체 반환하거나 일치요소 없으면 null 반환 */
+							 const productItem = new ProductItem(pListSection); /* pLostSection값을 담은 productItem상수  */  /* const는 중복선언 / 값 재할당 불가능 */
+							 
+							 	function ProductItem(pListSection) { /* 매개변수 pListSection 를 가진 함수 ProductItem */
+							 		const bestList = pListSection.querySelector('.product_best'); /* product_best의 값을 담은 bestList 상수 */ /* 함수내에서만 사용가능 */
+							  		const myselfList = pListSection.querySelector('.product_myself');  /* product_myself의 값을 담은 myselfList 상수 */ /* 함수내에서만 사용가능 */
+							  		const sportsList = pListSection.querySelector('.product_sports');  /* product_sports의 값을 담은 sportsList 상수 *//* 함수내에서만 사용가능 */
+							
+							  		const updateProductFnc = (productItems, title, moreBtnRef) => { /* updateProductFnc는 productItems, title, moreBtnRef의 값을 가짐 */
+							  			const moreBtn = moreBtnRef.length>0 ?'<a class="product_more" href='+moreBtnRef+'>전체보기</a>':''; /* 상수 moreBtn은 전체보기 */
+							  			const titleValue = title ? '<div class="product_title"><h2>'+title+'</h2>'+moreBtn+'</div>' : ''; /* 상수 titleValue는 타이틀 + 전체보기 */
+							  			let onlyValue=''; /* let onlyValue는 ''?' */ /* let은 중복선언 불가능 / 값 재할당 가능 */
+							  	  		let hotValue=''; /* let hotValue는 ''?' */
+							  	  		let priceValue = ''; /* let priceValue는 ''?' */
+							  	  		
+							  			const test = productItems.map((item) => {  /* productItems의 배열을 받아 새로운 배열 만들어서 test에 대입 */
+							  				onlyValue = item.only ? "<span class='info_only'>ONLY</span>" : ''; /* item의 only가 참이면 span ONLY 주고, 아니면 공백 */
+											hotValue = item.hot ? "<span class='info_hot'>HOT</span>" : '' ; /* item의 hot이 참이면 span HOT 주고, 아니면 공백 */
+											priceValue ="<span class='price_current'>" + item.price +"원</span>" /* priceValue는 span + item.price + 원 + /span으로 나타냄 */
+											 
+								
+									return "<div class='product_item'><a href ='productlist?p_no="+item.p_no+"'><div class='product_item_img'><img src='"+item.image + "'/></div></a> <span class='product_item_name'>" +
+											item.title + "</span> <div class='product_item_price'>" +priceValue + "</div><span><div class='product_item_info'>"+ onlyValue + 
+											hotValue +"</div></span>"+ "</div>"}).join('');
+							  	  		
+							  	  		/* div class 'product_item' 정의, 아이템 클릭시 링크 'productlist?p_no="+item.p_no 이런식으로 넘김 / div class 'product_item_img' 정의 이미지 주소는 item.image임 */
+							  	  		/* span class 'product_item_name' 은 item.title임, div class 'product_item_price'는 priceValue값임, div class 'product_item_info'는 onlyValue, hotValue값임 */
+							  	  		/* 배열 반환 */
+							            
+							  	  	return titleValue+ "<div class='product_items'>"+ test + "</div>"; 
+							  	  	  	      };   /* 상수 titleValue + 배열 test 반환해줌. 함수 종료 */
+							  		
+							  		
+							 		const render = () => {  /* 호스팅이 지원x라서 맨 아래에 선언해야함 */
+							 			bestList.innerHTML = updateProductFnc(bestProducts, '',''); /* 모임 */ /* bestList내에 포함된 html요소 정의 */
+							 			myselfList.innerHTML = updateProductFnc(myselfProducts, '나를 알아가는 시간','/main/productlist'); /* 자기계발 */ /* myselfList내에 포함된 html요소 정의 */
+							 			sportsList.innerHTML = updateProductFnc(sportsProducts, '같이 운동할까요?','/main/productlist'); /* 운동  */ /* sportsList내에 포함된 html요소 정의 */
+							 		}
+							 	 render();
+							}
+							 	
+							</script> -->
+								</div>
+
+                     </div>
+                </div>
+		</div>
+		
+		
+		<hr style="width: 900px;">
+		<div class="container-fluid">
+				
+				<div
+					class="d-sm-flex align-items-center justify-content-between mb-4">
+
+				</div>
+<!--  =========================================================== -->
+<!--  =================== 결제내역 ================ -->
+        <h4 class="blog-post-title mb-1" style="color: gray;">내활동</h4><br /><br />
+				<div class="card shadow mb-4">
+                     <div class="card-body">
+                     	
+
+								<div class="container">
+      <article class="blog-post">
+					
+        					<h1 class="h3 mb-0 text-gray-800" style="color: gray; font-size: 20px">결제내역</h1>
+									<!-- 카드안쪽 -->
+						<div class="product_container product_cont2">
+							
+
+	<table class="table">
+        <tr>
+        	<td>상품명</td>
+        	<td>결제일</td>
+        	<td></td>
+        	<td></td>
+        </tr>
+       <tr th:each="pdto: ${list2}">
+        <td th:text="${pdto.title}"></td>
+        <td th:text="${pdto.pay_date}"></td>
+        
+		<td th:switch="${pdto.pay_status}" >
+			<span th:case="0" class="btn btn-outline-danger btn-sm" th:text="결제대기"></span>
+			<span th:case="1" >
+				<a th:href="@{/board/write(p_no=${pdto.p_no})}" th:text="후기작성" class="btn btn-outline-info btn-sm"></a>
+				<a th:href="@{/product/pay/delete(pay_no=${pdto.pay_no})}" th:text="환불" onclick="refund()" class="btn btn-outline-warning btn-sm" ></a>
+	</span>
+
+       </table>
+       
+       </div>
+        <br>
+       <!--  =================== 후기관리 ================ -->
+       <h1 class="h3 mb-0 text-gray-800" style="color: gray; font-size: 20px">후기내역</h1>
+      <div class="product_container product_cont2">
+							
+
+	<table class="table">
+        <tr>
+        	<td>상품명</td>
+        	<td>작성일</td>
+        	<td>내용</td>
+        	<td></td>
+        	
+        </tr>
+       <tr th:each="rdto: ${list3}">
+        	<td th:text="${rdto.title}"></td>
+        	<td th:text="${rdto.regdate}"></td>
+        	<td th:text="${rdto.contents}"></td>
+			<td><a th:href="@{/review/delete(r_no=${rdto.r_no})}" 
+				th:text="삭제" onclick="delwrite()" class="btn btn-outline-danger btn-sm"></a></td>
+	
+		</tr>
+       </table>
+       
+       </div>
+       </div>
+</div>
+		</div>
+		</div>
+ <!--  =========================================================== -->  
+
+
+        
+<div class="accordion" id="accordionExample">
+									
+        <hr style="width: 900px;">
+        
+		<h4 class="blog-post-title mb-1" style="color: gray;">내 쿠폰</h4><br /><br />
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+			  보유 쿠폰보기🎫
+			</button>
+			
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h1 class="modal-title fs-5" id="exampleModalLabel">로그인 id님의 보유쿠폰</h1>
+			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			      </div>
+			      <div class="modal-body">
+			      <!-- 시간남으면 쿠폰 view 업그레이드 -->
+			        <div th:text="${usersDTO.coupon}"/>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">확인</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>	
+			<br /><br />
+			<a href="https://www.frip.co.kr/invite-friends" class="btn btn-secondary" tabindex="-1" role="button" aria-disabled="true">친구추천😊3000원 쿠폰 받기</a>
+			
+		<hr style="width: 900px;">
+		
+		<h4 class="blog-post-title mb-1" style="color: gray;">고객센터</h4><br /><br />
+
+			<a href=""><button type="button" class="btn btn-light">공지사항📢</button></a>
+			
+			<button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+			  고객센터문의📟
+			</button>
+			
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h1 class="modal-title fs-5" id="exampleModalLabel">고객센터문의</h1>
+			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			      </div>
+			      <div class="modal-body">
+			        <div
+									class="BodyScrollLockContainer__Container-sc-19uqzq5-0 jFvWc New__Content-sc-17rcq7-5 epGKeS">
+									<div class="ServiceCenter__Wrapper-sc-1dot6qk-0 kyDEIh">
+										<div
+											class="ServiceCenter__ServiceContainer-sc-1dot6qk-1 gMYPxR">
+											<div class="ServiceCenter__BoxContainer-sc-1dot6qk-2 gwIDaC">
+												<a href="https://pf.kakao.com/_xbxmrqM" target="_blank"><button
+														class="ServiceCenter__ImageButtonContainer-sc-1dot6qk-3 eruMaR">
+														<img
+															src="data:image/svg+xml,%3Csvg width='32' height='34' viewBox='0 0 32 34' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cpath d='M16.0087 0C7.1667 0 0 6.66229 0 14.8634C0 20.9311 2.52813 23.8295 5.99183 26.4699V33.5912C5.99223 33.6672 6.01358 33.7415 6.05349 33.806C6.09341 33.8705 6.15033 33.9226 6.21795 33.9566C6.28556 33.9906 6.36122 34.0051 6.43652 33.9984C6.51183 33.9918 6.58382 33.9644 6.64453 33.9191L12.7147 29.3902L12.8452 29.447C13.8831 29.6377 14.9362 29.7328 15.9913 29.7311C24.8333 29.7311 32 23.0732 32 14.8678C32 6.66229 24.8333 0.00437085 15.9913 0.00437085M10.6434 18.6317C11.383 18.6556 12.1095 18.4326 12.7094 17.9975C13.3094 17.5625 13.7489 16.94 13.9592 16.2273H16.2785C16.0554 17.5546 15.3621 18.756 14.3264 19.6101C13.2908 20.4641 11.9827 20.9131 10.6434 20.8743C9.84156 20.896 9.04348 20.7561 8.29632 20.4627C7.54916 20.1694 6.86805 19.7287 6.29324 19.1666C5.71843 18.6044 5.26157 17.9323 4.94961 17.1898C4.63765 16.4473 4.47692 15.6496 4.47692 14.8437C4.47692 14.0378 4.63765 13.2401 4.94961 12.4976C5.26157 11.7551 5.71843 11.083 6.29324 10.5209C6.86805 9.95872 7.54916 9.51798 8.29632 9.22467C9.04348 8.93136 9.84156 8.79142 10.6434 8.81311C11.9983 8.77271 13.3212 9.23124 14.363 10.1024C15.4049 10.9736 16.0938 12.1973 16.3002 13.5432H13.9853C13.8033 12.8012 13.3717 12.1452 12.7634 11.6863C12.1552 11.2274 11.4078 10.9939 10.6478 11.0251C10.1448 11.0045 9.64314 11.0893 9.17462 11.2742C8.7061 11.4591 8.28105 11.74 7.92655 12.0991C7.57204 12.4581 7.29584 12.8874 7.11558 13.3595C6.93531 13.8317 6.85493 14.3364 6.87952 14.8415C6.87252 15.3405 6.96502 15.8358 7.15159 16.2982C7.33816 16.7607 7.615 17.1809 7.9658 17.5341C8.3166 17.8874 8.73426 18.1665 9.19414 18.355C9.65402 18.5435 10.1468 18.6376 10.6434 18.6317ZM25.9385 20.6426H23.8107V15.8339C23.8107 14.7235 23.1667 14.129 22.1789 14.129C21.0737 14.129 20.3644 14.8066 20.3644 16.1836V20.6601H18.2366V8.85683H20.3644V13.3027C20.8735 12.5246 21.7003 12.1443 22.8186 12.1443C23.2329 12.1285 23.6458 12.2014 24.0299 12.3582C24.414 12.5149 24.7605 12.752 25.0465 13.0535C25.3504 13.3944 25.5838 13.7925 25.7332 14.2248C25.8826 14.6571 25.945 15.1149 25.9168 15.5716L25.9385 20.6426Z' fill='%23333333'/%3E %3C/svg%3E"
+															alt="kakao">
+													</button></a><span class="ServiceCenter__Title-sc-1dot6qk-4 fXfbey">카카오톡
+													채널 뉴밋 (일반회원전용)</span>
+											</div>
+											<div class="ServiceCenter__BoxContainer-sc-1dot6qk-2 gwIDaC">
+												<a href="https://pf.kakao.com/_NQxnQxd" target="_blank"><button
+														class="ServiceCenter__ImageButtonContainer-sc-1dot6qk-3 eruMaR">
+														<img
+															src="data:image/svg+xml,%3Csvg width='32' height='34' viewBox='0 0 32 34' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cpath d='M16.0087 0C7.1667 0 0 6.66229 0 14.8634C0 20.9311 2.52813 23.8295 5.99183 26.4699V33.5912C5.99223 33.6672 6.01358 33.7415 6.05349 33.806C6.09341 33.8705 6.15033 33.9226 6.21795 33.9566C6.28556 33.9906 6.36122 34.0051 6.43652 33.9984C6.51183 33.9918 6.58382 33.9644 6.64453 33.9191L12.7147 29.3902L12.8452 29.447C13.8831 29.6377 14.9362 29.7328 15.9913 29.7311C24.8333 29.7311 32 23.0732 32 14.8678C32 6.66229 24.8333 0.00437085 15.9913 0.00437085M10.6434 18.6317C11.383 18.6556 12.1095 18.4326 12.7094 17.9975C13.3094 17.5625 13.7489 16.94 13.9592 16.2273H16.2785C16.0554 17.5546 15.3621 18.756 14.3264 19.6101C13.2908 20.4641 11.9827 20.9131 10.6434 20.8743C9.84156 20.896 9.04348 20.7561 8.29632 20.4627C7.54916 20.1694 6.86805 19.7287 6.29324 19.1666C5.71843 18.6044 5.26157 17.9323 4.94961 17.1898C4.63765 16.4473 4.47692 15.6496 4.47692 14.8437C4.47692 14.0378 4.63765 13.2401 4.94961 12.4976C5.26157 11.7551 5.71843 11.083 6.29324 10.5209C6.86805 9.95872 7.54916 9.51798 8.29632 9.22467C9.04348 8.93136 9.84156 8.79142 10.6434 8.81311C11.9983 8.77271 13.3212 9.23124 14.363 10.1024C15.4049 10.9736 16.0938 12.1973 16.3002 13.5432H13.9853C13.8033 12.8012 13.3717 12.1452 12.7634 11.6863C12.1552 11.2274 11.4078 10.9939 10.6478 11.0251C10.1448 11.0045 9.64314 11.0893 9.17462 11.2742C8.7061 11.4591 8.28105 11.74 7.92655 12.0991C7.57204 12.4581 7.29584 12.8874 7.11558 13.3595C6.93531 13.8317 6.85493 14.3364 6.87952 14.8415C6.87252 15.3405 6.96502 15.8358 7.15159 16.2982C7.33816 16.7607 7.615 17.1809 7.9658 17.5341C8.3166 17.8874 8.73426 18.1665 9.19414 18.355C9.65402 18.5435 10.1468 18.6376 10.6434 18.6317ZM25.9385 20.6426H23.8107V15.8339C23.8107 14.7235 23.1667 14.129 22.1789 14.129C21.0737 14.129 20.3644 14.8066 20.3644 16.1836V20.6601H18.2366V8.85683H20.3644V13.3027C20.8735 12.5246 21.7003 12.1443 22.8186 12.1443C23.2329 12.1285 23.6458 12.2014 24.0299 12.3582C24.414 12.5149 24.7605 12.752 25.0465 13.0535C25.3504 13.3944 25.5838 13.7925 25.7332 14.2248C25.8826 14.6571 25.945 15.1149 25.9168 15.5716L25.9385 20.6426Z' fill='%23333333'/%3E %3C/svg%3E"
+															alt="kakao channel">
+													</button></a><span class="ServiceCenter__Title-sc-1dot6qk-4 fXfbey">카카오톡
+													채널 뉴밋호스트 (호스트전용)</span>
+											</div>
+										</div>
+										<hr class="Hr-sc-4qqq6q-0 kWURac">
+										<div
+											class="ServiceCenter__ServiceDetailContainer-sc-1dot6qk-5 kuNBmY">
+											<span class="ServiceCenter__ServiceTitle-sc-1dot6qk-6 etDWDJ">운영시간</span><span
+												class="ServiceCenter__ServiceText-sc-1dot6qk-7 edYrtp">평일
+												9:00 ~ 18:00 (점심 12:50 ~ 14:00)</span>
+										</div>
+									</div>
+								</div>
+							</div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">확인</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		
+		
+
+
+	</main>
+   	 <th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
+	<script>
+	const title = document.querySelector('.menu_title');
+	const titleMenu = document.querySelector('.title_group');
+	const chevron = document.querySelector('.chevron');
+	const fas = document.querySelector('.fas');
+	chevron.innerHTML = '<i class="fas fa-chevron-down"></i>';
+	
+	title.addEventListener('click', (e) => {
+		if(titleMenu.classList.contains('menu_up')) {
+			chevron.innerHTML = '<i class="fas fa-chevron-up"></i>';
+			titleMenu.style.height = '30px';
+			titleMenu.style.opacity = '1';
+			titleMenu.classList.remove('menu_up');
+			titleMenu.classList.add('menu_down');
+		} else {
+			chevron.innerHTML = '<i class="fas fa-chevron-down"></i>';
+		titleMenu.style.height = '0px';
+			titleMenu.style.opacity = '0';
+			titleMenu.classList.remove('menu_down');
+			titleMenu.classList.add('menu_up');
+		}
+	});
+	</script>
+</body>
+</html>

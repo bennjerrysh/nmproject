@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>NewMeet</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+	crossorigin="anonymous"></script>
+</head>
+<style>
+	#container {
+	width: 80%;
+	height: 100%;	
+	}
+</style>
+
+<!-- header -->
+<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
+
+<body>
+	<div class="container">
+		<h3>뉴밋로고 중간에 띄우기</h3>
+		결제완료 주문내역은 마이페이지에서 확인 가능. <br>
+		<a th:href=@{mypage} class="btn btn-outline-info">마이페이지 바로가기</a>
+	</div>
+
+
+	<!-- footer -->
+	<th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
+</body>
+</html>
