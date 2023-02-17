@@ -83,7 +83,7 @@ public class UserController {
     @PostMapping("/login/signupOk")
     public String signupOk(@ModelAttribute("usersDTO")UsersDTO usersDTO) {
         userService.joinUser(usersDTO);
-        return "redirect:/login";
+        return "redirect:login/login";
     }
     
    	//아이디 중복확인
