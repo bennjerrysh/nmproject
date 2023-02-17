@@ -430,7 +430,7 @@ $(function(){
 		}
 	});
 		
-	 function validationCheck3(data){
+	 /* function validationCheck3(data){
 		var userphone = $('#userphone').val();
 		var regphone = /^\d{3}-\d{3,4}-\d{4}$/;
 		if(typeof data == 'undefined' || data == '' || data == null || !regphone.test(userphone)){
@@ -464,9 +464,9 @@ $(function(){
 				}
 			});
 		}
-	}); 
+	});  */
 	
-	/* $("#btncheck3").click(function(){
+	 $("#btncheck3").click(function(){
 		var phone = $("#userphone").val();
 		var regphone = /^\d{3}-\d{3,4}-\d{4}$/;
 		if(typeof phone == 'undefined' || phone == '' || phone == null || !regphone.test(phone)){
@@ -505,7 +505,7 @@ $(function(){
 			alert("인증번호가 일치하지 않습니다.");
 			$(this).attr("autofocus",true);
 		}
-	}); */
+	});
 
 	
 });

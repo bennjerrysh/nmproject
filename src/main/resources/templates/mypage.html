@@ -27,7 +27,7 @@ function delwrite() {
 }
 </script>
 </head>
-	<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
+	<th:block layout:fragment="header" th:include="@{main/header}"></th:block>
 
 <body>
     <main>
@@ -138,8 +138,8 @@ function delwrite() {
 								<div class="product_item" th:each="dto : ${list }">
 									<a>
 										<div class="product_item_img">
-											<a th:href="@{/product/productDetail(p_no=${dto.p_no})}">
-											<img th:src="@{/image/mainimage/} + ${dto.image}"></a> 
+											<a th:href="@{product/productDetail(p_no=${dto.p_no})}">
+											<img th:src="@{image/mainimage/} + ${dto.image}"></a> 
 										</div>
 									</a> <span class="product_item_name" th:text="${dto.title}"></span>
 									<div class="product_item_price" th:text="${#numbers.formatInteger(dto.price, 3, 'COMMA')}+원">
@@ -281,8 +281,8 @@ function delwrite() {
 		<td th:switch="${pdto.pay_status}" >
 			<span th:case="0" class="btn btn-outline-danger btn-sm" th:text="결제대기"></span>
 			<span th:case="1" >
-				<a th:href="@{/board/write(p_no=${pdto.p_no})}" th:text="후기작성" class="btn btn-outline-info btn-sm"></a>
-				<a th:href="@{/product/pay/delete(pay_no=${pdto.pay_no})}" th:text="환불" onclick="refund()" class="btn btn-outline-warning btn-sm" ></a>
+				<a th:href="@{board/write(p_no=${pdto.p_no})}" th:text="후기작성" class="btn btn-outline-info btn-sm"></a>
+				<a th:href="@{product/pay/delete(pay_no=${pdto.pay_no})}" th:text="환불" onclick="refund()" class="btn btn-outline-warning btn-sm" ></a>
 	</span>
 
        </table>
@@ -306,7 +306,7 @@ function delwrite() {
         	<td th:text="${rdto.title}"></td>
         	<td th:text="${rdto.regdate}"></td>
         	<td th:text="${rdto.contents}"></td>
-			<td><a th:href="@{/review/delete(r_no=${rdto.r_no})}" 
+			<td><a th:href="@{review/delete(r_no=${rdto.r_no})}" 
 				th:text="삭제" onclick="delwrite()" class="btn btn-outline-danger btn-sm"></a></td>
 	
 		</tr>
@@ -417,7 +417,7 @@ function delwrite() {
 
 
 	</main>
-   	 <th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
+   	 <th:block layout:fragment="footer" th:include="@{main/footer}"></th:block>
 	<script>
 	const title = document.querySelector('.menu_title');
 	const titleMenu = document.querySelector('.title_group');
