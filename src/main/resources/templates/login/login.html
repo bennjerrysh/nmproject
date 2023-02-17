@@ -278,7 +278,7 @@ form .signin__btn:hover {
 							$("#sign_password").hide();
 							signin_btn.text("회원가입");
 							$("form").removeAttr("method");
-							$("form").attr("action", "/auth1");
+							$("form").attr("action", "auth1");
 							$("#loginError").hide();
 						});
 
@@ -309,7 +309,7 @@ form .signin__btn:hover {
 													.show(
 															".first-input input__block first-input__block,.input__block");
 											signin_btn.text("로그인");
-											$("form").attr("action", "/login_proc");
+											$("form").attr("action", "login_proc");
 											$("form").attr("method", "post");
 										});
 						
