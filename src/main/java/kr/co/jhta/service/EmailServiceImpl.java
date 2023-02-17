@@ -25,7 +25,7 @@ public class EmailServiceImpl implements EmailService{
         MimeMessage  message = emailSender.createMimeMessage();
  
         message.addRecipients(RecipientType.TO, to);//보내는 대상
-        message.setSubject("뉴밋 회원가입 인증 번호입니다!!!");//제목
+        message.setSubject("뉴밋 회원가입 인증 번호입니다!!!","utf-8");//제목
  
         String msgg="";
         msgg+= "<div style='margin:20px;'>";
