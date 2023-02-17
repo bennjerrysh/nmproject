@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<th:block layout:fragment="header" th:include="@{main/header}"></th:block>
+<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
 <meta charset="UTF-8">
  <link th:href="@{/css/adimage2.css}" rel="stylesheet" />
 <link rel="stylesheet"
@@ -37,19 +37,19 @@
 	<h2 class="menu_title">모임 <span class="chevron"></span></h2>
 
 	<ul class="title_group menu_up">
-		<li><a th:href="@{main/sportslist(cateno=100)}">운동</a></li>
-		<li><a th:href="@{main/triplist(cateno=200)}">여행</a></li>
-		<li><a th:href="@{main/myselflist(cateno=300)}">자기계발</a></li>
-		<li><a th:href="@{main/artlist(cateno=400)}">문화생활</a></li>
+		<li><a th:href="@{/sportslist(cateno=100)}">운동</a></li>
+		<li><a th:href="@{/triplist(cateno=200)}">여행</a></li>
+		<li><a th:href="@{/myselflist(cateno=300)}">자기계발</a></li>
+		<li><a th:href="@{/artlist(cateno=400)}">문화생활</a></li>
 		<li class="active_menu">자기계발</li>
 	</ul>
 		
 	<ul>
 		<li class="active_menu">전체</li>
-		<li><a th:href="@{main/productListDetail(contents=술)}">술</a></li>
-		<li><a th:href="@{main/productListDetail(contents=스터디)}">스터디</a></li>
-		<li><a th:href="@{main/productListDetail(contents=토크)}">토크</a></li>
-		<li><a th:href="@{main/productListDetail(contents=모임기타)}">기타</a></li>
+		<li><a th:href="@{/productListDetail(contents=술)}">술</a></li>
+		<li><a th:href="@{/productListDetail(contents=스터디)}">스터디</a></li>
+		<li><a th:href="@{/productListDetail(contents=토크)}">토크</a></li>
+		<li><a th:href="@{/productListDetail(contents=모임기타)}">기타</a></li>
 	</ul>
 	</div>
 	<br>
@@ -59,7 +59,7 @@
 			<div class="product_item" th:each="dto : ${list }">
 				<a>
 					<div class="product_item_img">
-						<a th:href="@{product/productDetail(p_no=${dto.p_no})}"><img th:src="@{/image/mainimage/} + ${dto.image}"></a>
+						<a th:href="@{/product/productDetail(p_no=${dto.p_no})}"><img th:src="@{/image/mainimage/} + ${dto.image}"></a>
 					</div>
 				</a>
 				<span class="product_item_name" th:text="${dto.title}"></span>
@@ -78,7 +78,7 @@
 	</div>
 	<br>
 	<br>
-	<th:block layout:fragment="footer" th:include="@{main/footer}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
 	</main>
 	<script>
 	const title = document.querySelector('.menu_title');

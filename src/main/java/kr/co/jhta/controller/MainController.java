@@ -42,7 +42,7 @@ public class MainController {
 	
 
 	// 운동 리스트 페이지 
-	@GetMapping("/main/sportslist")
+	@GetMapping("/sportslist")
 	public String sportslist(@RequestParam("cateno")int cateno, Model model) {
 		
 		List<ProductDTO> list = service.selectOne(cateno);
@@ -53,7 +53,7 @@ public class MainController {
 		return "main/sportslist";
 	}
 	// 여행 리스트 페이지  
-		@GetMapping("/main/triplist")
+		@GetMapping("/triplist")
 		public String triplist(@RequestParam("cateno")int cateno, Model model) {
 			
 			List<ProductDTO> list = service.selectOne(cateno);
@@ -64,7 +64,7 @@ public class MainController {
 			return "main/triplist";
 		}
 		// 자기계발 리스트 페이지  
-		@GetMapping("/main/myselflist")
+		@GetMapping("/myselflist")
 		public String myselflist(@RequestParam("cateno")int cateno, Model model) {
 			
 			List<ProductDTO> list = service.selectOne(cateno);
@@ -75,7 +75,7 @@ public class MainController {
 			return "main/myselflist";
 		}
 		// 문화생활 리스트 페이지  
-		@GetMapping("/main/artlist")
+		@GetMapping("/artlist")
 		public String artlist(@RequestParam("cateno")int cateno, Model model) {
 			
 			List<ProductDTO> list = service.selectOne(cateno);
@@ -86,7 +86,7 @@ public class MainController {
 			return "main/artlist";
 		}
 		// 모임 리스트 페이지  
-		@GetMapping("/main/grouplist")
+		@GetMapping("/grouplist")
 		public String grouplist(@RequestParam("cateno")int cateno, Model model) {
 			
 			List<ProductDTO> list = service.selectOne(cateno);
@@ -98,7 +98,7 @@ public class MainController {
 		}
 		
 		// 상세 리스트 페이지
-		@GetMapping("/main/productListDetail")
+		@GetMapping("/productListDetail")
 		public String productDetailList(@RequestParam("contents")String contents, Model model) {
 			
 			List<ProductDTO> list2 = service.selectList(contents);
@@ -109,7 +109,7 @@ public class MainController {
 		}
 		
 		// 검색 페이지
-		@GetMapping("/main/searchOk")
+		@GetMapping("/searchOk")
 		public String searchOk(@RequestParam("title")String title, Model model) {
 			
 			List<ProductDTO> list3 = service.searchList(title);
