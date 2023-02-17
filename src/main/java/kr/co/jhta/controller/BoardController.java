@@ -102,7 +102,7 @@ public class BoardController {
 		
 		rs.addStar(dto2);
 		log.info(">>>>>>>>>>" + dto2);
-		return "/main";
+		return "main";
 	}
 
 //공지사항
