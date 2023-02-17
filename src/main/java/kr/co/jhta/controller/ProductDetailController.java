@@ -117,10 +117,10 @@ public class ProductDetailController {
 			List<ReviewDTO> list3 = rs.getReview(usersDTO.getNickname());
 			model.addAttribute("list3",list3);
 			
-			return "/mypage";
+			return "mypage";
 
 		} else {
-			return "/login/login";
+			return "login/login";
 		}
 
 	}
