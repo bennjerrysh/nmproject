@@ -522,7 +522,7 @@ $(function(){
 		<div class="container1-1">
 			
 			<div style="padding: 0px; width: 620px;">
-				<form th:action="@{/login/signupOk}" method="post" id="joinForm" th:object="${usersDTO}">
+				<form th:action="@{login/signupOk}" method="post" id="joinForm" th:object="${usersDTO}">
 				<div class="jull">
 					<div class="jull1">
 						<label class="julltext1">아이디</label>
@@ -763,7 +763,7 @@ $(function(){
 						<div class="jull2_1">
 							<span class="jull2_2"
 								style="margin-top: 20px; font-size: 20px; font-weight: bold; font-family: 'Do Hyeon', sans-serif;">
-								<i class="xi-arrow-right" onclick="window.open('/tac')"></i> 이용약관 필수 동의
+								<i class="xi-arrow-right" onclick="window.open('tac')"></i> 이용약관 필수 동의
 							</span> <span style="float: right;"> 
 								<input type="radio" name="agree1" value="" id="agree1" required disabled>동의합니다
 							</span>
@@ -779,7 +779,7 @@ $(function(){
 						<div class="jull2_1">
 							<span class="jull2_2"
 								style="margin-top: 20px; font-size: 20px; font-weight: bold; font-family: 'Do Hyeon', sans-serif;">
-								<i class="xi-arrow-right" onclick="window.open('/privacy')"></i> 개인정보 처리방침 필수 동의 
+								<i class="xi-arrow-right" onclick="window.open('privacy')"></i> 개인정보 처리방침 필수 동의 
 							</span> 
 							<span style="float: right;"> 
 									<input type="radio" name="agree2" value="" id="agree2" required disabled>동의합니다
@@ -795,7 +795,7 @@ $(function(){
 						<div class="jull2_1">
 							<span class="jull2_2"
 								style="margin-top: 20px; font-size: 20px; font-weight: bold; font-family: 'Do Hyeon', sans-serif;">
-								<i class="xi-arrow-right" onclick="window.open('/locationService')"></i> 위치기반 서비스 약관 필수 동의 
+								<i class="xi-arrow-right" onclick="window.open('locationService')"></i> 위치기반 서비스 약관 필수 동의 
 							</span> 
 							<span style="float: right;"> 
 								<input type="radio" name="agree3" value="" id="agree3" required disabled>동의합니다
