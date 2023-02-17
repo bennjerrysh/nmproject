@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<th:block layout:fragment="header" th:include="@{/main/header}"></th:block>
+<th:block layout:fragment="header" th:include="@{main/header}"></th:block>
 <meta charset="UTF-8">
  <link th:href="@{/css/adimage2.css}" rel="stylesheet" />
 <link rel="stylesheet"
@@ -36,11 +36,11 @@
 	<h2 class="menu_title">카테고리 <span class="chevron"></span></h2>
 
 	<ul class="title_group menu_up">
-		<li><a th:href="@{/main/sportslist(cateno=100)}">운동</a></li>
-		<li><a th:href="@{/main/triplist(cateno=200)}">여행</a></li>
-		<li><a th:href="@{/main/myselflist(cateno=300)}">자기계발</a></li>
-		<li><a th:href="@{/main/artlist(cateno=400)}">문화생활</a></li>
-		<li><a th:href="@{/main/grouplist(cateno=500)}">모임</a></li>
+		<li><a th:href="@{main/sportslist(cateno=100)}">운동</a></li>
+		<li><a th:href="@{main/triplist(cateno=200)}">여행</a></li>
+		<li><a th:href="@{main/myselflist(cateno=300)}">자기계발</a></li>
+		<li><a th:href="@{main/artlist(cateno=400)}">문화생활</a></li>
+		<li><a th:href="@{main/grouplist(cateno=500)}">모임</a></li>
 	</ul>
 
 	</div>
@@ -50,7 +50,7 @@
 			<div class="product_item" th:each="dto : ${list2 }">
 				<a>
 					<div class="product_item_img">
-						<a th:href="@{/product/productDetail(p_no=${dto.p_no})}">
+						<a th:href="@{product/productDetail(p_no=${dto.p_no})}">
 						<img th:src="@{/image/mainimage/} + ${dto.image}"></a>
 					</div>
 				</a>
@@ -71,7 +71,7 @@
 	<br>
 	<br>
 	
-	<th:block layout:fragment="footer" th:include="@{/main/footer}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{main/footer}"></th:block>
 	</main>
 	<script>
 	const title = document.querySelector('.menu_title');
