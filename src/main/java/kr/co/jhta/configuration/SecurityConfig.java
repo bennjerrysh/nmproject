@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                .antMatchers("/user_access").hasAnyRole("USER","MEMBER","ADMIN")
                 .antMatchers("/manage").hasRole("ADMIN")
                 .antMatchers("/host").hasAnyRole("MEMBER","ADMIN")
-               .antMatchers("/login").anonymous()
+               .antMatchers("/login","/auth1","/login/signup").anonymous()
                // GUEST USER MEMBER ADMIN
                 .and()
                 .csrf().disable()//토큰번호disable
