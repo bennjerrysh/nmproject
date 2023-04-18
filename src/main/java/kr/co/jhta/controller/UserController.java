@@ -60,7 +60,7 @@ public class UserController {
     
     
     //회원가입 mn_auth1단계 인증코드
-   	@RequestMapping("login/mailConfirm")
+   	@PostMapping("login/mailConfirm")
     @ResponseBody
     String mailConfirm(@RequestParam("email") String email) throws Exception {
 
