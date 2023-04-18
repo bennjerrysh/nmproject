@@ -55,7 +55,7 @@
 // 이메일 인증번호
 $('#checkEmail').on('click',function() {
    $.ajax({
-      type : "GET",
+      type : "POST",
       url : "login/mailConfirm",
       data : {
          "email" : $('#userEmail').val()
