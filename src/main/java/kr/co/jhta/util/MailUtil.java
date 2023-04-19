@@ -19,8 +19,9 @@ public class MailUtil {
 		String charSet="utf-8";
 		String hostSMTP="smtp.gmail.com";
 		String hostSMTPid="histudyway@gmail.com";//관리자 이메일 아이디
-		String hostSMTPpw="yekfnzntxnnetqig"; //관리자 이메일 비밀번호
+		String hostSMTPpw="axxweglomjaxxhis"; //관리자 이메일 비밀번호
 		
+		//sxazidtexraroeyc
 		//보내는 사람 
 		String fromEmail="histudyway@gmail.com"; //보내는 사람 이메일 
 		String fromName="newmeet"; //보내는 사람 이름
